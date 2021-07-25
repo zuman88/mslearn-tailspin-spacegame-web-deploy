@@ -100,6 +100,7 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
+              appType: 'webAppLinux'
               appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
       
@@ -126,3 +127,9 @@ stages:
                     azureSubscription: 'Resource Manager - Tailspin - Space Game'
                     appName: '$(WebAppNameTest)'
                     package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Resource Manager - Tailspin - Space Game'
+    appType: 'webAppLinux'
+    appName: '$(WebAppNameTest)'
+    package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
